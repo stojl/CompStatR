@@ -1,0 +1,5 @@
+PKG_LIBS = $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
+all: $(SHLIB)
+
+C_newton_raphson.o:	C_newton_raphson.c
+	gcc -I$(R_INCLUDE_DIR) $(SAFE_FFLAGS) $(FPICFLAGS) $(SHLIB_FFLAGS) $(R_XTRA_FFLAGS) -o C_newton_raphson.o -c C_newton_raphson.c -llapack -lblas
