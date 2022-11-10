@@ -4,7 +4,7 @@
 \alias{SGD}
 \title{Stochastic Gradient Descent}
 \usage{
-SGD(par0, loss_gr, N, batch, epoch, gamma0 = 1, maxit = 15, loss)
+SGD(par0, loss_gr, N, batch, epoch, gamma0 = 1, maxit = 15)
 }
 \description{
 Stochastic Gradient Descent

@@ -1,7 +1,7 @@
 #include <Rinternals.h>
 #include <R.h>
 
-SEXP sgd(SEXP par0, SEXP loss_gr, SEXP N,
+SEXP C_sgd(SEXP par0, SEXP loss_gr, SEXP N,
          SEXP batch, SEXP epoch,
          SEXP gamma0, SEXP maxit, SEXP rho) {
   int n_maxit = asInteger(maxit);

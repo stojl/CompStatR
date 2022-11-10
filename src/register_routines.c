@@ -1,8 +1,8 @@
 #include <R.h>
 #include <Rinternals.h>
-#include<R_ext/Rdynload.h>
+#include <R_ext/Rdynload.h>
 
-extern SEXP sgd(SEXP par0, SEXP loss_gr, SEXP N,
+extern SEXP C_sgd(SEXP par0, SEXP loss_gr, SEXP N,
                 SEXP batch, SEXP epoch,
                 SEXP gamma0, SEXP maxit, SEXP rho);
 
@@ -23,21 +23,18 @@ extern SEXP C_newton_raphson(SEXP par0, SEXP H, SEXP gr, SEXP hess,
                              SEXP eps, SEXP maxit, SEXP env);
 
 // REGISTER ROUTINES
-#define CALLDEF(name, n)  {#name, (DL_FUNC) &name, n}
 
 static const R_CallMethodDef R_CallDef[] = {
-  CALLDEF(sgd, 8),
-  CALLDEF(C_adap_samp, 6),
-  CALLDEF(C_dens, 5),
-  CALLDEF(C_em_t_dist, 5),
-  CALLDEF(C_epoch_batch, 6),
-  CALLDEF(C_loocv, 4),
-  CALLDEF(C_newton_raphson, 10),
+  {"C_sgd", (DL_FUNC) &C_sgd, 8},
+  {"C_adap_samp", (DL_FUNC) &C_adap_samp, 6},
+  {"C_dens", (DL_FUNC) &C_dens, 5},
+  {"C_em_t_dist", (DL_FUNC) &C_em_t_dist, 5},
+  {"C_epoch_batch", (DL_FUNC) &C_epoch_batch, 6},
+  {"C_loocv", (DL_FUNC) &C_loocv, 4},
+  {"C_newton_raphson", (DL_FUNC) &C_newton_raphson, 10},
   {NULL, NULL, 0}
 };
 
 void R_init_CompStatR(DllInfo *dll) {
   R_registerRoutines(dll, NULL, R_CallDef, NULL, NULL);
-  R_useDynamicSymbols(dll, FALSE);
-  R_forceSymbols(dll, TRUE);
 }

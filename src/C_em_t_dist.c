@@ -24,7 +24,7 @@ SEXP C_em_t_dist(SEXP par0,
     double S1 = 0, S2 = 0, S3 = 0;
     for(int j = 0; j < n; ++j) {
       EW[j] = (nu_ + 1) /
-        (1 + (x_[j] - par[0]) * (x_[j] - par[0]) /
+        (1 + (x_[j] * x_[j] + par[0] * par[0] - 2 * par[0] * x_[j]) /
           (nu_ * par[1]));
       S1 += EW[j];
       S2 += EW[j] * x_[j];
