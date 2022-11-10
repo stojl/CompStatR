@@ -2,12 +2,12 @@
 #' @export
 #'
 SGD <- function(par0,
-                 loss_gr,
-                 N,
-                 batch,
-                 epoch,
-                 gamma0 = 1,
-                 maxit = 15) {
+                loss_gr,
+                N,
+                batch,
+                epoch,
+                gamma0 = 1,
+                maxit = 15) {
   if(is.numeric(gamma0)) {
     if(length(gamma0) == 1) {
       gamma <- rep(gamma0, maxit)
@@ -20,7 +20,7 @@ SGD <- function(par0,
     stop("gamma0 must be a numeric or a function.")
   }
 
-  .Call("sgd",
+  .Call("C_sgd",
         par0,
         loss_gr,
         N,
