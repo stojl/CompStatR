@@ -4,19 +4,15 @@
 
 double static norm2(double *x, int m) {
   char jobu = 'N', jobvt = 'N';
-  int n = 1, info, lwork;
-  if(m > 3) {
-    lwork = m + 2;
-  } else {
-    lwork = 5;
-  }
-  double *U, *VT, s;
+  int n = 1, info, lwork = 5;
+  if(m > 3) lwork = m + 2;
+  double U, VT, s;
   double *A = (double*)malloc(sizeof(double) * m);
   double *work = (double*)malloc(sizeof(double) * lwork);
   for(int i = 0; i < m; ++i)
     A[i] = x[i];
   dgesvd_(&jobu, &jobvt, &m, &n, A, &m, &s,
-          U, &m, VT, &m, work, &lwork, &info);
+          &U, &m, &VT, &m, work, &lwork, &info);
   free(A);
   free(work);
   return s;
